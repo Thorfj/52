@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: cursive;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+      color: white;
+      background: blueviolet;
+      background-position: center;
+      background-size: 50%;
+      background-repeat: repeat;
+    }
+
+    h1 {
+      margin: 4rem 2rem;
+    }
+
+    .carousel {
+      position: relative;
+      overflow: hidden;
+      width: 80%;
+      max-width: 400px;
+      margin: 1rem auto;
+      border: 0.1rem solid gray;
+      border-radius: 0.4rem;
+      aspect-ratio: 3 / 4;
+    }
+
+    .carousel img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 0.8s ease;
+    }
+
+    .carousel img.active {
+      opacity: 1;
+    }
+
+    .timer {
+      font-size: 1.5em;
+      margin: 0rem;
+      padding: 2rem;
+    }
+
+    .text {
+      font-size: 1.2em;
+      padding: 2rem;
+    }
+
+    p {
+      margin: 0.1rem;
+      font-size: 1.2em;
+      font-style: italic;
+    }
+
+    .macherrie {
+      margin: 0rem;
+      padding: 0rem;
+      padding-bottom: 1rem;
+      font-size: 1em;
+    }
+
+    .play-music {
+      margin: 2rem;
+      padding: 1rem 2rem;
+      font-size: 1.2em;
+      color: white;
+      background-color: blue;
+      border: none;
+      border-radius: 0.5rem;
+      cursor: pointer;
+    }
+
+    .play-music:hover {
+      background-color: darkblue;
+    }
+  </style>
+  <title>Thor & Analu</title>
+</head>
+
+<body>
+  <h1>O tempo do seu lado é o meu maior presente ✨</h1>
+
+  <div class="carousel">
+    <img src="/Presente Analu/img/RoupaBranca.jpg" alt="Placeholder 1" class="active">
+    <img src="/Presente Analu/img/Elevador.jpg" alt="Placeholder 2">
+    <img src="/Presente Analu/img/JaraguadoSul.jpg" alt="Placeholder 3">
+    <img src="/Presente Analu/img/RoupaBrancaBeijo.jpg" alt="Placeholder 4">
+    <img src="/Presente Analu/img/Coelho.jpg" alt="Placeholder 5">
+  </div>
+
+  <div class="timer" id="timer"></div>
+  <p class="text">Desde o dia em que se conhecemos, o mundo ficou mais bonito. Esse tempo que estamos juntos é a prova de que o amor é a força mais poderosa do universo. Obrigado por cada sorriso e cada momento ao seu lado.</p>
+  <p class="macherrie">J'adore ma cherie.</p>
+
+  <!-- Elemento de áudio com a música local, iniciando automaticamente -->
+  <audio id="background-music" loop autoplay>
+    <source src="/Presente Analu/music/Victor Leo - Tem Que Ser Você.mp4" type="audio/mp4">
+    Seu navegador não suporta reprodução de áudio.
+  </audio>
+
+  <script>
+    // Carousel Logic
+    const carouselImages = document.querySelectorAll('.carousel img');
+    let currentIndex = 0;
+
+    function showNextImage() {
+      carouselImages[currentIndex].classList.remove('active');
+      currentIndex = (currentIndex + 1) % carouselImages.length;
+      carouselImages[currentIndex].classList.add('active');
+    }
+
+    setInterval(showNextImage, 3000); // timer do Carrossel
+
+    // Timer Logic
+    const timerElement = document.getElementById('timer');
+    const startDate = new Date('2023-02-24T00:00:00');
+
+    function updateTimer() {
+      const now = new Date();
+      let elapsed = now - startDate;
+
+      const years = Math.floor(elapsed / (1000 * 60 * 60 * 24 * 365));
+      elapsed %= 1000 * 60 * 60 * 24 * 365;
+      const months = Math.floor(elapsed / (1000 * 60 * 60 * 24 * 30));
+      elapsed %= 1000 * 60 * 60 * 24 * 30;
+      const days = Math.floor(elapsed / (1000 * 60 * 60 * 24));
+      elapsed %= 1000 * 60 * 60 * 24;
+      const hours = Math.floor(elapsed / (1000 * 60 * 60));
+      elapsed %= 1000 * 60 * 60;
+      const minutes = Math.floor(elapsed / (1000 * 60));
+      const seconds = Math.floor((elapsed / 1000) % 60);
+
+      timerElement.textContent = `Juntos há ${years} ano, ${months} meses, ${days} dias, ${hours} horas, ${minutes} minutos e ${seconds} segundos ao seu lado ❤️`;
+    }
+
+    setInterval(updateTimer, 1000);
+    updateTimer();
+  </script>
+</body>
+
+</html>
