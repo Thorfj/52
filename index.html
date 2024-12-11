@@ -71,12 +71,41 @@
       font-size: 1em;
     }
 
+    /* Estilo do pop-up */
+    .popup {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+
+    .popup-content {
+      background: white;
+      color: black;
+      padding: 2rem;
+      border-radius: 0.5rem;
+      text-align: center;
+      max-width: 90%;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .popup-content h2 {
+      margin-bottom: 1.5rem;
+      font-size: 1.5em;
+    }
+
     .play-music {
-      margin: 2rem;
+      margin: 1rem 0;
       padding: 1rem 2rem;
       font-size: 1.2em;
       color: white;
-      background-color: blue;
+      background-color: blueviolet;
       border: none;
       border-radius: 0.5rem;
       cursor: pointer;
@@ -104,14 +133,31 @@
   <p class="text">Desde o dia em que se conhecemos, o mundo ficou mais bonito. Esse tempo que estamos juntos é a prova de que o amor é a força mais poderosa do universo. Obrigado por cada sorriso e cada momento ao seu lado.</p>
   <p class="macherrie">J'adore ma cherie.</p>
 
-  <!-- Elemento de áudio com a música local, iniciando automaticamente -->
-  <audio id="background-music" loop autoplay>
-    <source src="./music/Victor Leo - Tem Que Ser Você.mp4" type="audio/mp4">
-    <source src="./music/Victor Leo - Tem Que Ser Você.mp4" type="audio/mp3">
+  <!-- Elemento de áudio -->
+  <audio id="background-music" loop>
+    <source src="./music/Victor Leo - Tem Que Ser Você.m4a" type="audio/mp4">
     Seu navegador não suporta reprodução de áudio.
   </audio>
 
+  <!-- Pop-up -->
+  <div class="popup" id="music-popup">
+    <div class="popup-content">
+      <h2>Amor, eu te amo absurdos, e espero que o proximo ano seja ainda melhor para nós dois!</h2>
+      <p>💍🤰🏠</p>
+      <button class="play-music" onclick="startMusic()"><strong><i>Bien sûr mon amour!</i></strong></button>
+    </div>
+  </div>
+
   <script>
+    // Função para iniciar a música e fechar o pop-up
+    function startMusic() {
+      const music = document.getElementById('background-music');
+      const popup = document.getElementById('music-popup');
+
+      music.play();
+      popup.style.display = 'none'; // Remove o pop-up
+    }
+
     // Carousel Logic
     const carouselImages = document.querySelectorAll('.carousel img');
     let currentIndex = 0;
